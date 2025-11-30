@@ -19,7 +19,7 @@
       scroll-behavior: smooth;
     }
 
-    /* 頂部區域：名字＋一句話 */
+    /* 頂部區域：名字＋大頭照 */
     header {
       background: radial-gradient(circle at top, #42a5f5, #0d47a1);
       color: white;
@@ -37,25 +37,52 @@
       pointer-events: none;
     }
 
-    header h1 {
+    .hero-inner {
+      position: relative;
+      max-width: 900px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 16px;
+      z-index: 1;
+    }
+
+    .hero-avatar {
+      width: 140px;
+      height: 140px;
+      border-radius: 50%;
+      overflow: hidden;
+      border: 3px solid rgba(255,255,255,0.85);
+      box-shadow: 0 8px 20px rgba(0,0,0,0.25);
+      background-color: rgba(255,255,255,0.2);
+    }
+
+    .hero-avatar img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .hero-text h1 {
       font-size: 2.6rem;
       margin-bottom: 6px;
       letter-spacing: 0.12em;
       text-transform: uppercase;
     }
 
-    header h2 {
+    .hero-text h2 {
       font-size: 1.1rem;
       font-weight: 400;
       opacity: 0.9;
       margin-bottom: 10px;
     }
 
-    header p {
+    .hero-text p {
       font-size: 0.95rem;
       opacity: 0.85;
       max-width: 720px;
-      margin: 0 auto;
     }
 
     /* 導覽列 */
@@ -170,7 +197,7 @@
       border: 1px solid #e3f2fd;
       padding: 12px 14px;
       background: #fafafa;
-      display: none; /* JS 會控制顯示哪一張 */
+      display: none; /* JS 控制顯示哪一張 */
     }
 
     .q-card-title {
@@ -300,10 +327,22 @@
       padding: 20px 10px 30px;
     }
 
+    @media (min-width: 768px) {
+      .hero-inner {
+        flex-direction: row;
+        text-align: left;
+        justify-content: center;
+        align-items: center;
+      }
+      .hero-text p {
+        margin: 0;
+      }
+    }
+
     @media (max-width: 720px) {
       header { padding: 40px 16px 60px; }
-      header h1 { font-size: 2.2rem; }
-      header h2 { font-size: 1rem; }
+      .hero-text h1 { font-size: 2.2rem; }
+      .hero-text h2 { font-size: 1rem; }
       .two-col { grid-template-columns: 1fr; }
       .pbmc-layout { grid-template-columns: 1fr; }
       main { margin-top: -20px; }
@@ -311,17 +350,23 @@
   </style>
 </head>
 <body>
-  <!-- HERO：以 PPT 為主題，但文案可以稍微不一樣 -->
+  <!-- HERO：大頭照 + 介紹 -->
   <header id="top">
-    <!-- ★ 把這裡改成你的名字（現在先寫 Sky Lin） -->
-    <h1>SKY LIN</h1>
-    <!-- ★ 一句你的定位，可改成你自己的 -->
-    <h2>Power Electronics & EV Power Systems</h2>
-    <!-- ★ 簡短 summary，可以參考 PPT 但寫得更像網站介紹 -->
-    <p>
-      電力電子與電動車電源系統工程師，專注於高功率、高效率與高可靠度的設計。
-      我相信好的電源設計可以同時推動產業發展，也讓世界更乾淨、更永續。
-    </p>
+    <div class="hero-inner">
+      <!-- 你的大頭照：檔名 sky.png 要放在同一個 repo 根目錄 -->
+      <div class="hero-avatar">
+        <img src="sky.png" alt="Sky Lin Portrait" />
+      </div>
+
+      <div class="hero-text">
+        <h1>SKY LIN</h1>
+        <h2>Power Electronics & EV Power Systems</h2>
+        <p>
+          電力電子與電動車電源系統工程師，專注於高功率、高效率與高可靠度的設計。
+          我相信好的電源設計可以同時推動產業發展，也讓世界更乾淨、更永續。
+        </p>
+      </div>
+    </div>
   </header>
 
   <!-- 導覽列 -->
@@ -336,23 +381,21 @@
   </nav>
 
   <main>
-    <!-- 專業亮點：參考 PPT，但做成兩欄排版 -->
+    <!-- 專業亮點 -->
     <section id="highlight" class="card">
       <h2>Professional Highlight</h2>
-      <p class="section-subtitle">以 PPT 為基礎，統整成網站版的專業簡介。</p>
+      <p class="section-subtitle">以簡報為基礎，統整成網站版的專業簡介。</p>
 
       <div class="two-col">
         <div>
           <h3>Education / Background</h3>
           <ul>
-            <!-- ★ 這裡依照你 PPT 的學歷改寫 -->
             <li>Ph.D in Power Electronics</li>
             <li>25+ years experience in EV, server and telecom power systems</li>
           </ul>
 
           <h3>One-line Summary</h3>
           <div class="quote">
-            <!-- ★ 這句用自己的話寫，不要跟 PPT 完全一樣 -->
             From AC/DC desktop adapters to high-power EV systems, I design
             reliable and efficient power solutions that move products — and
             people — forward.
@@ -369,7 +412,6 @@
         <div>
           <h3>Selected Experiences</h3>
           <ul>
-            <!-- ★ 下面每一條可以從 PPT Slide 2 拿重點，稍微重寫 -->
             <li>EV power design including OBCM, auxiliary power and EVCC integration.</li>
             <li>Switching power supply design from 65 W up to multi-kW applications.</li>
             <li>Server & telecom power systems with three-phase, high-density solutions.</li>
@@ -379,7 +421,7 @@
       </div>
     </section>
 
-    <!-- EV 經驗：把 PPT 那張變成網站解說 -->
+    <!-- EV 經驗 -->
     <section id="ev" class="card">
       <h2>EV Power System Experience</h2>
       <p class="section-subtitle">從電池、充電器到 traction inverter 的完整系統視角。</p>
@@ -388,7 +430,6 @@
         <div>
           <h3>Why EV Matters</h3>
           <ul>
-            <!-- ★ 可以參考 PPT 的「Benefits of EV」重寫 -->
             <li>Higher energy efficiency compared to traditional ICE vehicles.</li>
             <li>Lower local emissions and quieter, smoother driving.</li>
             <li>Better integration with renewable energy and smart grid.</li>
@@ -405,7 +446,6 @@
         <div>
           <h3>Key Components I Work With</h3>
           <ul>
-            <!-- ★ 這四個就是你 PPT 上那幾個 block，文字可以改寫 -->
             <li><strong>HVDC Battery</strong> – energy source for traction and auxiliary loads.</li>
             <li><strong>On-Board Charger (OBCM)</strong> – AC to DC conversion and battery charging control.</li>
             <li><strong>Traction Inverter</strong> – DC to AC conversion for the motor, including regenerative braking.</li>
@@ -415,20 +455,19 @@
       </div>
     </section>
 
-    <!-- Three Questions：做成可以切換的卡片，增加互動感 -->
+    <!-- Three Questions -->
     <section id="q" class="card">
       <h2>The Three Questions</h2>
       <p class="section-subtitle">用三個問題，整理我在工作與人生中的核心動力。</p>
 
       <div class="q-wrapper">
-        <!-- Q1 卡片 -->
+        <!-- Q1 -->
         <div class="q-card" data-index="0">
           <div class="q-card-title">
             1. 什麼時候你感到最有成就感？<br />
             <span style="font-size:0.8rem;color:#777;">When do you feel most energized and fulfilled?</span>
           </div>
           <div class="q-card-body">
-            <!-- ★ 這裡把 PPT 裡的 Q1 Answer 改寫放進來 -->
             When I work with my team to solve a tough power design problem and
             finally see the hardware pass every test, I feel truly fulfilled.
             Long nights in the lab, endless debugging, and then that moment
@@ -436,14 +475,13 @@
           </div>
         </div>
 
-        <!-- Q2 卡片 -->
+        <!-- Q2 -->
         <div class="q-card" data-index="1">
           <div class="q-card-title">
             2. 你最欣賞的榜樣是誰？為什麼？<br />
             <span style="font-size:0.8rem;color:#777;">Who is your role model and why?</span>
           </div>
           <div class="q-card-body">
-            <!-- ★ 這裡放 PPT Q2 的角色（例如 T.C. Cheng），但文字可以換句話說 -->
             I look up to T. C. Cheng from Delta Electronics. He shows how deep
             technical expertise and a long-term vision for sustainability can
             coexist. His leadership proves that power electronics can drive
@@ -451,14 +489,13 @@
           </div>
         </div>
 
-        <!-- Q3 卡片 -->
+        <!-- Q3 -->
         <div class="q-card" data-index="2">
           <div class="q-card-title">
             3. 你希望別人怎麼記得你？<br />
             <span style="font-size:0.8rem;color:#777;">How would you like to be remembered?</span>
           </div>
           <div class="q-card-body">
-            <!-- ★ 這裡放 PPT Q3 Answer 的精神，改寫成網站版 -->
             I hope people remember me as someone who is reliable, curious and
             kind — an engineer who cares not only about numbers, but also about
             people and the planet. Someone who quietly pushes projects forward
@@ -477,7 +514,7 @@
       </div>
     </section>
 
-    <!-- PBMC：用點選格子 → 右邊顯示說明，增加互動 -->
+    <!-- PBMC -->
     <section id="pbmc" class="card">
       <h2>Personal Business Model Canvas (PBMC)</h2>
       <p class="section-subtitle">
@@ -486,7 +523,6 @@
 
       <div class="pbmc-layout">
         <div class="pbmc-grid">
-          <!-- ★ 每個格子請依照你 PPT PBMC 的內容改寫 data-detail -->
           <div
             class="pbmc-item active"
             data-title="Key Partners｜關鍵夥伴"
@@ -579,14 +615,11 @@
       </div>
     </section>
 
-    <!-- Contact：作業需要的話可以放 Email 等 -->
+    <!-- Contact：只留 Email -->
     <section id="contact" class="card">
       <h2>Contact</h2>
       <ul class="contact-list">
-        <!-- ★ 把下面改成你自己的聯絡方式或只留 Email -->
-        <li>📧 Email：your_email@example.com</li>
-        <li>🔗 LinkedIn：link-to-your-linkedin</li>
-        <li>💻 GitHub：https://github.com/your-github</li>
+        <li>📧 Email：<a href="mailto:sky880025@gmail.com">sky880025@gmail.com</a></li>
       </ul>
     </section>
   </main>
@@ -599,7 +632,7 @@
     // 年份顯示
     document.getElementById("year").textContent = new Date().getFullYear();
 
-    // 三個問題：簡單的卡片切換
+    // 三個問題：卡片切換
     const qCards = document.querySelectorAll(".q-card");
     const qIndexText = document.getElementById("q-index-text");
     let currentQ = 0;
