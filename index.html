@@ -4,92 +4,173 @@
   <meta charset="UTF-8" />
   <title>Sky Lin | Power Electronics & EV Systems Engineer</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta
+    name="description"
+    content="Personal branding site of Sky Lin, focusing on power electronics and electric vehicle power systems."
+  />
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
 
     body {
-      font-family: Arial, sans-serif;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
       line-height: 1.6;
       color: #222;
       background-color: #f5f5f5;
       scroll-behavior: smooth;
     }
 
+    /* HEADER (hero) */
     header {
       background: radial-gradient(circle at top, #42a5f5, #0d47a1);
       color: white;
       padding: 60px 16px 80px;
       text-align: center;
+      position: relative;
+      overflow: hidden;
     }
-
+    header::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at 20% 0, rgba(255,255,255,0.18), transparent 60%);
+      pointer-events: none;
+    }
+    .hero-inner {
+      position: relative;
+      max-width: 900px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 16px;
+      z-index: 1;
+    }
     .hero-avatar {
       width: 140px;
       height: 140px;
       border-radius: 50%;
       overflow: hidden;
       border: 3px solid rgba(255,255,255,0.9);
-      margin: auto;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.25);
     }
-
     .hero-avatar img {
       width: 100%;
       height: 100%;
       object-fit: cover;
+      display: block;
     }
-
-    h1 {
-      margin-top: 12px;
+    .hero-text h1 {
       font-size: 2.5rem;
-      letter-spacing: 0.1em;
+      margin-top: 8px;
+      letter-spacing: 0.12em;
       text-transform: uppercase;
     }
-
-    h2 {
-      font-size: 1.1rem;
-      opacity: 0.85;
-      margin-bottom: 10px;
+    .hero-text h2 {
+      font-size: 1.05rem;
+      font-weight: 500;
+      opacity: 0.9;
+      margin-bottom: 8px;
+    }
+    .hero-text p {
+      font-size: 0.95rem;
+      opacity: 0.9;
+      max-width: 720px;
     }
 
+    /* NAV */
     nav {
-      background: white;
-      padding: 12px;
-      text-align: center;
+      background-color: white;
       position: sticky;
       top: 0;
       z-index: 10;
-      box-shadow:0 2px 6px rgba(0,0,0,0.1);
+      box-shadow: 0 2px 6px rgba(0,0,0,0.08);
     }
-
+    nav ul {
+      list-style: none;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 14px;
+      padding: 10px 16px;
+    }
     nav a {
       text-decoration: none;
-      color: #0d47a1;
-      margin: 0 10px;
-      font-size: 0.95rem;
+      color: #1565c0;
+      font-size: 0.9rem;
+      padding: 6px 12px;
+      border-radius: 999px;
+      transition: background-color 0.15s, transform 0.1s;
     }
-
     nav a:hover {
-      text-decoration: underline;
+      background-color: rgba(21,101,192,0.1);
+      transform: translateY(-1px);
     }
 
+    /* MAIN LAYOUT */
     main {
-      max-width: 900px;
-      margin: auto;
-      padding: 20px;
+      max-width: 1040px;
+      margin: -32px auto 40px;
+      padding: 0 16px;
+    }
+    .card {
+      background-color: white;
+      border-radius: 18px;
+      padding: 22px 22px 26px;
+      margin-bottom: 22px;
+      box-shadow: 0 4px 18px rgba(0,0,0,0.06);
+    }
+    .card h2 {
+      font-size: 1.5rem;
+      margin-bottom: 8px;
+      color: #1565c0;
+    }
+    .card h3 {
+      font-size: 1.05rem;
+      margin: 10px 0 6px;
+      color: #333;
+    }
+    .section-subtitle {
+      font-size: 0.9rem;
+      color: #757575;
+      margin-bottom: 8px;
+    }
+    ul {
+      margin-left: 1.2rem;
+      margin-top: 4px;
+    }
+    .two-col {
+      display: grid;
+      grid-template-columns: minmax(0,1.1fr) minmax(0,1.1fr);
+      gap: 16px;
+      margin-top: 6px;
+    }
+    .quote {
+      border-left: 3px solid #bbdefb;
+      padding-left: 10px;
+      font-size: 0.95rem;
+      margin-top: 6px;
+    }
+    .tag-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 8px;
+    }
+    .tag {
+      font-size: 0.8rem;
+      background-color: #e3f2fd;
+      color: #1565c0;
+      padding: 4px 10px;
+      border-radius: 999px;
     }
 
-    .card {
-      background: white;
-      padding: 20px;
-      border-radius: 15px;
-      margin-bottom: 20px;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.08);
-    }
+    /* EV CIRCLES INTERACTIVE */
     .ev-circles {
       display: flex;
-      justify-content: center;
       flex-wrap: wrap;
-      gap: 16px;
-      margin-top: 16px;
+      justify-content: center;
+      gap: 18px;
+      margin: 14px 0 18px;
     }
     .ev-circle {
       width: 110px;
@@ -97,133 +178,554 @@
       border-radius: 50%;
       background-image: url("ev.png");
       background-size: cover;
-      border: 2px solid rgba(21,101,192,0.5);
+      background-position: center;
+      border: 2px solid rgba(21,101,192,0.45);
       position: relative;
       cursor: pointer;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+      transition: transform 0.15s, box-shadow 0.15s, border-color 0.15s;
+      overflow: hidden;
+    }
+    .ev-circle::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at top, rgba(255,255,255,0.25), transparent 55%);
+      pointer-events: none;
     }
     .ev-circle span {
       position: absolute;
-      bottom: 8px;
       left: 50%;
+      bottom: 8px;
       transform: translateX(-50%);
-      font-size: 0.8rem;
-      background: rgba(0,0,0,0.6);
+      font-size: 0.78rem;
       padding: 3px 8px;
-      color: white;
       border-radius: 999px;
+      background-color: rgba(0,0,0,0.65);
+      color: #fff;
+    }
+    .ev-circle:hover {
+      transform: translateY(-2px) scale(1.03);
+      box-shadow: 0 6px 16px rgba(0,0,0,0.2);
+      border-color: #1565c0;
     }
     .ev-circle.active {
-      transform: scale(1.07);
+      transform: translateY(-2px) scale(1.06);
       border-color: #0d47a1;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.25);
+    }
+    .ev-detail {
+      border-radius: 14px;
+      border: 1px solid #e0e0e0;
+      padding: 12px 14px;
+      background-color: #fcfcfc;
+      font-size: 0.9rem;
+    }
+    .ev-detail h3 {
+      font-size: 1rem;
+      margin-bottom: 4px;
+      color: #0d47a1;
+    }
+
+    /* THREE QUESTIONS (interactive) */
+    .q-wrapper {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      margin-top: 6px;
+    }
+    .q-card {
+      border-radius: 14px;
+      border: 1px solid #e3f2fd;
+      padding: 12px 14px;
+      background-color: #fafafa;
+      display: none;
+    }
+    .q-card-title {
+      font-weight: 600;
+      font-size: 0.95rem;
+      color: #0d47a1;
+      margin-bottom: 6px;
+    }
+    .q-card-body {
+      font-size: 0.9rem;
+    }
+    .q-controls {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-top: 6px;
+      gap: 8px;
+    }
+    .q-buttons {
+      display: flex;
+      gap: 8px;
+    }
+    .btn {
+      border: none;
+      border-radius: 999px;
+      padding: 6px 12px;
+      font-size: 0.85rem;
+      cursor: pointer;
+      background-color: #e3f2fd;
+      color: #1565c0;
+      transition: background-color 0.15s, transform 0.1s;
+    }
+    .btn:hover {
+      background-color: #bbdefb;
+      transform: translateY(-1px);
+    }
+    .q-index {
+      font-size: 0.85rem;
+      color: #777;
+    }
+
+    /* PBMC 3x3 GRID */
+    .pbmc-layout {
+      display: grid;
+      grid-template-columns: minmax(0,1.25fr) minmax(0,1.1fr);
+      gap: 16px;
+      margin-top: 10px;
+    }
+    .pbmc-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 10px;
+    }
+    .pbmc-item {
+      border-radius: 12px;
+      border: 1px solid #e0e0e0;
+      background-color: #fafafa;
+      padding: 10px 12px;
+      font-size: 0.9rem;
+      cursor: pointer;
+      transition: background-color 0.15s, border-color 0.15s, transform 0.1s;
+    }
+    .pbmc-item-title {
+      font-weight: 600;
+      color: #1565c0;
+      margin-bottom: 2px;
+      font-size: 0.9rem;
+    }
+    .pbmc-item-short {
+      font-size: 0.8rem;
+      color: #555;
+    }
+    .pbmc-item:hover {
+      background-color: #e3f2fd;
+      border-color: #1565c0;
+      transform: translateY(-1px);
+    }
+    .pbmc-item.active {
+      background-color: #bbdefb;
+      border-color: #0d47a1;
+    }
+    .pbmc-detail {
+      border-radius: 14px;
+      border: 1px solid #e0e0e0;
+      padding: 12px 14px;
+      background-color: #fcfcfc;
+      font-size: 0.9rem;
+    }
+    .pbmc-detail h3 {
+      font-size: 1rem;
+      margin-bottom: 4px;
+      color: #0d47a1;
+    }
+
+    /* CONTACT & FOOTER */
+    .contact-list {
+      list-style: none;
+      margin-left: 0;
+      font-size: 0.9rem;
+    }
+    .contact-list li {
+      margin-bottom: 4px;
+    }
+    footer {
+      text-align: center;
+      font-size: 0.8rem;
+      color: #666;
+      padding: 20px 10px 30px;
+    }
+
+    @media (min-width: 768px) {
+      .hero-inner {
+        flex-direction: row;
+        align-items: center;
+        justify-content: center;
+        text-align: left;
+      }
+      .hero-text p {
+        margin: 0;
+      }
+    }
+
+    @media (max-width: 720px) {
+      header { padding: 44px 16px 60px; }
+      .hero-text h1 { font-size: 2.2rem; }
+      .hero-text h2 { font-size: 1rem; }
+      .two-col { grid-template-columns: 1fr; }
+      .pbmc-layout { grid-template-columns: 1fr; }
+      main { margin-top: -24px; }
     }
   </style>
 </head>
-
 <body>
-<header>
-  <div class="hero-avatar"><img src="sky.png"></div>
-  <h1>Sky Lin</h1>
-  <h2>Power Electronics & EV Systems Engineer</h2>
-  <p style="max-width:700px;margin:auto;opacity:0.9;">
-    Designing efficient and reliable power systems for electric vehicles and clean energy innovation.
-  </p>
-</header>
-
-<nav>
-  <a href="#highlight">Highlights</a>
-  <a href="#ev">EV Experience</a>
-  <a href="#q">Three Questions</a>
-  <a href="#pbmc">PBMC</a>
-  <a href="#contact">Contact</a>
-</nav>
-
-<main>
-
-<section id="highlight" class="card">
-  <h2>Professional Highlights</h2>
-  <ul>
-    <li>Power system design for EV and clean technology</li>
-    <li>Converter design, testing, and system integration</li>
-    <li>Hands-on engineering + sustainability-driven mindset</li>
-  </ul>
-</section>
-
-<section id="ev" class="card">
-  <h2>EV Power System Experience</h2>
-  <p>Select a component to learn more:</p>
-
-  <div class="ev-circles">
-    <div class="ev-circle active" data-title="HVDC Battery"
-         data-desc="Main EV energy source. Safety, thermal reliability, and lifespan are key.">
-      <span>Battery</span>
+  <!-- HERO -->
+  <header id="top">
+    <div class="hero-inner">
+      <div class="hero-avatar">
+        <img src="sky.png" alt="Portrait of Sky Lin" />
+      </div>
+      <div class="hero-text">
+        <h1>Sky Lin</h1>
+        <h2>Power Electronics & EV Systems Engineer</h2>
+        <p>
+          I design and develop efficient, reliable power systems for electric vehicles and clean technologies.
+          Turning complex hardware challenges into practical, scalable solutions is what drives me every day.
+        </p>
+      </div>
     </div>
-    <div class="ev-circle" data-title="On-Board Charger (OBCM)"
-         data-desc="AC to DC conversion. Efficiency and bidirectional charging (V2G).">
-      <span>OBCM</span>
-    </div>
-    <div class="ev-circle" data-title="Traction Inverter"
-         data-desc="DC to AC motor drive with regenerative braking. SiC devices for high efficiency.">
-      <span>Inverter</span>
-    </div>
-    <div class="ev-circle" data-title="Motor"
-         data-desc="Energy conversion to motion and regenerative braking recovery.">
-      <span>Motor</span>
-    </div>
-  </div>
+  </header>
 
-  <div id="ev-detail" style="margin-top:15px;">
-    <h3 id="ev-detail-title">HVDC Battery</h3>
-    <p id="ev-detail-text">
-      Main EV energy source. Safety, thermal reliability, and lifespan are key.
-    </p>
-  </div>
-</section>
-<section id="q" class="card">
-  <h2>The Three Questions</h2>
-  <ul>
-    <li><strong>What motivates you most?</strong> Solving impossible challenges.</li>
-    <li><strong>Who inspires you?</strong> Engineers shaping a sustainable future.</li>
-    <li><strong>How do you want to be remembered?</strong> Reliable, curious, supportive.</li>
-  </ul>
-</section>
+  <!-- NAV -->
+  <nav>
+    <ul>
+      <li><a href="#highlight">Highlights</a></li>
+      <li><a href="#ev">EV Experience</a></li>
+      <li><a href="#q">Three Questions</a></li>
+      <li><a href="#pbmc">PBMC</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </nav>
 
-<section id="pbmc" class="card">
-  <h2>Personal Business Model Canvas</h2>
-  <ul>
-    <li><strong>Value Proposition:</strong> High-efficiency power solutions</li>
-    <li><strong>Key Activities:</strong> Design, testing, debugging, teamwork</li>
-    <li><strong>Partners:</strong> R&D groups and clean tech developers</li>
-    <li><strong>Resources:</strong> Technical skills and hands-on practice</li>
-    <li><strong>Target Users:</strong> EV and clean energy industries</li>
-  </ul>
-</section>
+  <main>
+    <!-- PROFESSIONAL HIGHLIGHTS -->
+    <section id="highlight" class="card">
+      <h2>Professional Highlights</h2>
+      <p class="section-subtitle">A brief snapshot of my technical focus and experience.</p>
 
-<section id="contact" class="card">
-  <h2>Contact</h2>
-  <p>Email: <a href="mailto:sky880025@gmail.com">sky880025@gmail.com</a></p>
-</section>
+      <div class="two-col">
+        <div>
+          <h3>Focus & Background</h3>
+          <ul>
+            <li>Power electronics and EV power conversion systems</li>
+            <li>High-efficiency AC-DC / DC-DC converter design</li>
+            <li>System-level thinking: from components to full EV power architecture</li>
+          </ul>
 
-</main>
+          <h3>One-Line Summary</h3>
+          <div class="quote">
+            From the battery pack to the motor drive, I care about every watt
+            — efficiency, reliability, and real-world performance.
+          </div>
 
-<footer style="text-align:center;margin:20px 0;color:#555;">
-  © <span id="year"></span> Sky Lin — All Rights Reserved
-</footer>
+          <div class="tag-row">
+            <span class="tag">Power Electronics</span>
+            <span class="tag">EV Systems</span>
+            <span class="tag">Converter Design</span>
+            <span class="tag">Reliability</span>
+          </div>
+        </div>
 
-<script>
-document.getElementById("year").textContent = new Date().getFullYear();
-const circles = document.querySelectorAll(".ev-circle");
-const title = document.getElementById("ev-detail-title");
-const text = document.getElementById("ev-detail-text");
+        <div>
+          <h3>Hands-On Experience</h3>
+          <ul>
+            <li>EV power stages: HVDC battery, OBCM, traction inverter, motor drive</li>
+            <li>Lab validation: efficiency measurement, thermal behavior, EMI checks</li>
+            <li>Debugging and iteration on real hardware, not just simulations</li>
+            <li>Working with cross-functional teams to integrate power systems into products</li>
+          </ul>
+        </div>
+      </div>
+    </section>
 
-circles.forEach(c => {
-  c.addEventListener("click", () => {
-    circles.forEach(x => x.classList.remove("active"));
-    c.classList.add("active");
-    title.textContent = c.dataset.title;
-    text.textContent = c.dataset.desc;
-  });
-});
-</script>
+    <!-- EV EXPERIENCE (INTERACTIVE CIRCLES) -->
+    <section id="ev" class="card">
+      <h2>EV Power System Experience</h2>
+      <p class="section-subtitle">
+        Click a component to see how I think about its role inside the EV powertrain.
+      </p>
 
+      <div class="ev-circles">
+        <div
+          class="ev-circle active"
+          data-title="HVDC Battery"
+          data-desc="The HVDC battery pack is the primary energy source of the EV. My focus areas include pack architecture, protection concepts, thermal behavior, and ensuring that the power stages draw energy safely and efficiently over the battery's lifetime."
+        >
+          <span>Battery</span>
+        </div>
+
+        <div
+          class="ev-circle"
+          data-title="On-Board Charger (OBCM)"
+          data-desc="The on-board charger converts AC from the grid into DC for charging the HV battery. I care about high efficiency, power factor correction, safety, and the possibility of bidirectional operation for vehicle-to-grid (V2G) applications."
+        >
+          <span>OBCM</span>
+        </div>
+
+        <div
+          class="ev-circle"
+          data-title="Traction Inverter"
+          data-desc="The traction inverter interfaces between the battery and the motor. Design priorities include using devices like SiC MOSFETs, managing switching behavior, thermal design, EMI performance, and supporting smooth torque control and regenerative braking."
+        >
+          <span>Inverter</span>
+        </div>
+
+        <div
+          class="ev-circle"
+          data-title="Electric Motor"
+          data-desc="The electric motor converts electrical energy into mechanical motion, and works together with the inverter for regenerative braking. My work here focuses on matching the inverter control strategy, understanding efficiency maps, and supporting system-level performance targets."
+        >
+          <span>Motor</span>
+        </div>
+      </div>
+
+      <div class="ev-detail">
+        <h3 id="ev-detail-title">HVDC Battery</h3>
+        <p id="ev-detail-text">
+          The HVDC battery pack is the primary energy source of the EV. My focus
+          areas include pack architecture, protection concepts, thermal behavior,
+          and ensuring that the power stages draw energy safely and efficiently
+          over the battery's lifetime.
+        </p>
+      </div>
+    </section>
+
+    <!-- THREE QUESTIONS (INTERACTIVE CARDS) -->
+    <section id="q" class="card">
+      <h2>The Three Questions</h2>
+      <p class="section-subtitle">
+        A simple framework that describes what motivates me, who inspires me, and how I hope to contribute.
+      </p>
+
+      <div class="q-wrapper">
+        <!-- Q1 -->
+        <div class="q-card" data-index="0">
+          <div class="q-card-title">
+            1. When do you feel most energized and fulfilled?
+          </div>
+          <div class="q-card-body">
+            I feel most energized when I am in the lab or with a team, working
+            through a difficult power design problem step by step. Long
+            debugging sessions, failures, and then finally seeing the hardware
+            pass all tests and operate exactly as expected — that journey from
+            idea to working product is what gives me real satisfaction.
+          </div>
+        </div>
+
+        <!-- Q2 -->
+        <div class="q-card" data-index="1">
+          <div class="q-card-title">
+            2. Who do you look up to, and why?
+          </div>
+          <div class="q-card-body">
+            I look up to engineering leaders who combine deep technical
+            knowledge with a clear sense of responsibility for the environment.
+            People who not only deliver strong products, but also commit to
+            improving energy efficiency and reducing emissions inspire me to
+            think beyond short-term goals.
+          </div>
+        </div>
+
+        <!-- Q3 -->
+        <div class="q-card" data-index="2">
+          <div class="q-card-title">
+            3. How would you like to be remembered by the people you work with?
+          </div>
+          <div class="q-card-body">
+            I hope to be remembered as someone who is reliable, curious, and
+            willing to help; an engineer who cares about both technical details
+            and the people on the team. I want colleagues to feel that working
+            with me made their projects smoother, their designs stronger, and
+            their learning curve steeper in a good way.
+          </div>
+        </div>
+
+        <div class="q-controls">
+          <div class="q-buttons">
+            <button class="btn" id="q-prev">◀ Previous</button>
+            <button class="btn" id="q-next">Next ▶</button>
+          </div>
+          <div class="q-index" id="q-index-text"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- PBMC NINE-BLOCK INTERACTIVE GRID -->
+    <section id="pbmc" class="card">
+      <h2>Personal Business Model Canvas (PBMC)</h2>
+      <p class="section-subtitle">
+        Think of myself as a small "one-person business" inside the engineering world.
+        Click any block to see how I define that part of my model.
+      </p>
+
+      <div class="pbmc-layout">
+        <div class="pbmc-grid">
+          <!-- Row 1 -->
+          <div
+            class="pbmc-item active"
+            data-title="Key Partners"
+            data-detail="Professors, senior engineers, project teammates and industry collaborators who challenge my ideas, share feedback, and help turn concepts into working hardware."
+          >
+            <div class="pbmc-item-title">Key Partners</div>
+            <div class="pbmc-item-short">Mentors, teams, industry</div>
+          </div>
+
+          <div
+            class="pbmc-item"
+            data-title="Key Activities"
+            data-detail="Designing, simulating and building power converters; running lab tests; debugging issues; documenting results; and sharing knowledge with others."
+          >
+            <div class="pbmc-item-title">Key Activities</div>
+            <div class="pbmc-item-short">Design, test, debug</div>
+          </div>
+
+          <div
+            class="pbmc-item"
+            data-title="Key Resources"
+            data-detail="My technical skills in power electronics, hands-on project experience, ability to learn quickly, and access to lab equipment and tools."
+          >
+            <div class="pbmc-item-title">Key Resources</div>
+            <div class="pbmc-item-short">Skills, tools, experience</div>
+          </div>
+
+          <!-- Row 2 -->
+          <div
+            class="pbmc-item"
+            data-title="Value Proposition"
+            data-detail="Delivering power designs that are efficient, reliable, and practical to manufacture — helping teams build products that perform well in the real world."
+          >
+            <div class="pbmc-item-title">Value Proposition</div>
+            <div class="pbmc-item-short">Efficient, reliable designs</div>
+          </div>
+
+          <div
+            class="pbmc-item"
+            data-title="Customer Relationships"
+            data-detail="Building trust by being consistent, transparent, and detail-oriented. I aim to be someone people can count on to own problems and follow through."
+          >
+            <div class="pbmc-item-title">Customer Relationships</div>
+            <div class="pbmc-item-short">Trust & reliability</div>
+          </div>
+
+          <div
+            class="pbmc-item"
+            data-title="Channels"
+            data-detail="Technical projects, design reviews, documentation, presentations, and day-to-day collaboration — all as ways to deliver value to teams and stakeholders."
+          >
+            <div class="pbmc-item-title">Channels</div>
+            <div class="pbmc-item-short">Projects & reviews</div>
+          </div>
+
+          <!-- Row 3 -->
+          <div
+            class="pbmc-item"
+            data-title="Customer Segments"
+            data-detail="Teams working on EVs, power supplies, and clean energy systems that need robust, efficient power stages and clear engineering communication."
+          >
+            <div class="pbmc-item-title">Customer Segments</div>
+            <div class="pbmc-item-short">EV & power teams</div>
+          </div>
+
+          <div
+            class="pbmc-item"
+            data-title="Cost Structure"
+            data-detail="Time and effort invested in learning, experimentation, lab work, and continuous improvement — plus the mental energy needed to stay curious and resilient."
+          >
+            <div class="pbmc-item-title">Cost Structure</div>
+            <div class="pbmc-item-short">Time & learning</div>
+          </div>
+
+          <div
+            class="pbmc-item"
+            data-title="Returns / Outcomes"
+            data-detail="Successful projects, stronger technical skills, better teamwork, and the chance to contribute to cleaner and more efficient technologies over the long term."
+          >
+            <div class="pbmc-item-title">Returns / Outcomes</div>
+            <div class="pbmc-item-short">Impact & growth</div>
+          </div>
+        </div>
+
+        <div class="pbmc-detail">
+          <h3 id="pbmc-detail-title">Key Partners</h3>
+          <p id="pbmc-detail-text">
+            Professors, senior engineers, project teammates and industry collaborators who
+            challenge my ideas, share feedback, and help turn concepts into working hardware.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section id="contact" class="card">
+      <h2>Contact</h2>
+      <ul class="contact-list">
+        <li>📧 Email: <a href="mailto:sky880025@gmail.com">sky880025@gmail.com</a></li>
+      </ul>
+    </section>
+  </main>
+
+  <footer>
+    © <span id="year"></span> Sky Lin — All Rights Reserved
+  </footer>
+
+  <script>
+    // Footer year
+    document.getElementById("year").textContent = new Date().getFullYear();
+
+    // EV circles interaction
+    const evCircles = document.querySelectorAll(".ev-circle");
+    const evTitle = document.getElementById("ev-detail-title");
+    const evText = document.getElementById("ev-detail-text");
+
+    evCircles.forEach(circle => {
+      circle.addEventListener("click", () => {
+        evCircles.forEach(c => c.classList.remove("active"));
+        circle.classList.add("active");
+        evTitle.textContent = circle.dataset.title;
+        evText.textContent = circle.dataset.desc;
+      });
+    });
+
+    // Three Questions interaction
+    const qCards = document.querySelectorAll(".q-card");
+    const qIndexText = document.getElementById("q-index-text");
+    let currentQ = 0;
+
+    function showQuestion(index) {
+      qCards.forEach((card, i) => {
+        card.style.display = i === index ? "block" : "none";
+      });
+      qIndexText.textContent = (index + 1) + " / " + qCards.length;
+    }
+
+    document.getElementById("q-prev").addEventListener("click", () => {
+      currentQ = (currentQ - 1 + qCards.length) % qCards.length;
+      showQuestion(currentQ);
+    });
+
+    document.getElementById("q-next").addEventListener("click", () => {
+      currentQ = (currentQ + 1) % qCards.length;
+      showQuestion(currentQ);
+    });
+
+    showQuestion(currentQ);
+
+    // PBMC grid interaction
+    const pbmcItems = document.querySelectorAll(".pbmc-item");
+    const pbmcTitle = document.getElementById("pbmc-detail-title");
+    const pbmcText = document.getElementById("pbmc-detail-text");
+
+    pbmcItems.forEach(item => {
+      item.addEventListener("click", () => {
+        pbmcItems.forEach(i => i.classList.remove("active"));
+        item.classList.add("active");
+        pbmcTitle.textContent = item.dataset.title;
+        pbmcText.textContent = item.dataset.detail;
+      });
+    });
+  </script>
 </body>
 </html>
