@@ -1,717 +1,229 @@
 <!DOCTYPE html>
-<html lang="zh-Hant">
+<html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>Sky Lin｜Personal Branding Website</title>
+  <title>Sky Lin | Power Electronics & EV Systems Engineer</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta
-    name="description"
-    content="Personal branding website of Sky Lin: professional highlights, EV experience, three questions, and personal business model canvas (PBMC)."
-  />
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
 
     body {
-      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      font-family: Arial, sans-serif;
       line-height: 1.6;
       color: #222;
       background-color: #f5f5f5;
       scroll-behavior: smooth;
     }
 
-    /* 頂部：大頭照 + 簡介 */
     header {
       background: radial-gradient(circle at top, #42a5f5, #0d47a1);
       color: white;
       padding: 60px 16px 80px;
       text-align: center;
-      position: relative;
-      overflow: hidden;
     }
-    header::after {
-      content: "";
-      position: absolute;
-      inset: 0;
-      background: radial-gradient(circle at 20% 0, rgba(255,255,255,0.15), transparent 60%);
-      pointer-events: none;
-    }
-    .hero-inner {
-      position: relative;
-      max-width: 900px;
-      margin: 0 auto;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 16px;
-      z-index: 1;
-    }
+
     .hero-avatar {
       width: 140px;
       height: 140px;
       border-radius: 50%;
       overflow: hidden;
-      border: 3px solid rgba(255,255,255,0.85);
-      box-shadow: 0 8px 20px rgba(0,0,0,0.25);
-      background-color: rgba(255,255,255,0.2);
+      border: 3px solid rgba(255,255,255,0.9);
+      margin: auto;
     }
+
     .hero-avatar img {
       width: 100%;
       height: 100%;
       object-fit: cover;
-      display: block;
-    }
-    .hero-text h1 {
-      font-size: 2.6rem;
-      margin-bottom: 6px;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-    }
-    .hero-text h2 {
-      font-size: 1.1rem;
-      font-weight: 400;
-      opacity: 0.9;
-      margin-bottom: 10px;
-    }
-    .hero-text p {
-      font-size: 0.95rem;
-      opacity: 0.85;
-      max-width: 720px;
     }
 
-    /* 導覽列 */
+    h1 {
+      margin-top: 12px;
+      font-size: 2.5rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+    }
+
+    h2 {
+      font-size: 1.1rem;
+      opacity: 0.85;
+      margin-bottom: 10px;
+    }
+
     nav {
-      background-color: white;
-      box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+      background: white;
+      padding: 12px;
+      text-align: center;
       position: sticky;
       top: 0;
       z-index: 10;
+      box-shadow:0 2px 6px rgba(0,0,0,0.1);
     }
-    nav ul {
-      list-style: none;
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 12px;
-      padding: 10px 16px;
-    }
+
     nav a {
       text-decoration: none;
-      color: #1565c0;
-      font-size: 0.9rem;
-      padding: 6px 12px;
-      border-radius: 999px;
-      transition: background-color 0.2s, transform 0.1s;
-    }
-    nav a:hover {
-      background-color: rgba(21,101,192,0.08);
-      transform: translateY(-1px);
-    }
-
-    /* 主內容 */
-    main {
-      max-width: 1040px;
-      margin: -30px auto 40px;
-      padding: 0 16px;
-    }
-    .card {
-      background-color: white;
-      border-radius: 18px;
-      padding: 22px 22px 26px;
-      box-shadow: 0 4px 18px rgba(0,0,0,0.06);
-      margin-bottom: 22px;
-    }
-    .card h2 {
-      font-size: 1.5rem;
-      margin-bottom: 10px;
-      color: #1565c0;
-    }
-    .card h3 {
-      font-size: 1.05rem;
-      margin-top: 12px;
-      margin-bottom: 4px;
-      color: #333;
-    }
-    .section-subtitle {
-      font-size: 0.9rem;
-      color: #757575;
-      margin-bottom: 8px;
-    }
-    .tag-row {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 8px;
-      margin-top: 8px;
-      margin-bottom: 4px;
-    }
-    .tag {
-      background-color: #e3f2fd;
-      color: #1565c0;
-      font-size: 0.8rem;
-      padding: 4px 10px;
-      border-radius: 999px;
-    }
-    ul {
-      margin-left: 1.2rem;
-      margin-top: 4px;
-    }
-    .two-col {
-      display: grid;
-      grid-template-columns: 1.1fr 1.2fr;
-      gap: 16px;
-    }
-    .quote {
-      border-left: 3px solid #bbdefb;
-      padding-left: 10px;
-      margin-top: 6px;
-      font-size: 0.95rem;
-    }
-
-    /* 三個問題：可切換卡片 */
-    .q-wrapper {
-      display: flex;
-      flex-direction: column;
-      gap: 12px;
-    }
-    .q-card {
-      border-radius: 14px;
-      border: 1px solid #e3f2fd;
-      padding: 12px 14px;
-      background: #fafafa;
-      display: none;
-    }
-    .q-card-title {
-      font-weight: 600;
-      font-size: 0.95rem;
       color: #0d47a1;
-      margin-bottom: 6px;
-    }
-    .q-card-body {
-      font-size: 0.9rem;
-    }
-    .q-controls {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-top: 8px;
-      gap: 8px;
-    }
-    .q-buttons {
-      display: flex;
-      gap: 8px;
-    }
-    .btn {
-      border: none;
-      border-radius: 999px;
-      padding: 6px 12px;
-      font-size: 0.85rem;
-      cursor: pointer;
-      background-color: #e3f2fd;
-      color: #1565c0;
-      transition: background-color 0.15s, transform 0.1s;
-    }
-    .btn:hover {
-      background-color: #bbdefb;
-      transform: translateY(-1px);
-    }
-    .q-index {
-      font-size: 0.85rem;
-      color: #777;
+      margin: 0 10px;
+      font-size: 0.95rem;
     }
 
-    /* EV 圓形互動區 */
+    nav a:hover {
+      text-decoration: underline;
+    }
+
+    main {
+      max-width: 900px;
+      margin: auto;
+      padding: 20px;
+    }
+
+    .card {
+      background: white;
+      padding: 20px;
+      border-radius: 15px;
+      margin-bottom: 20px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+    }
     .ev-circles {
       display: flex;
-      flex-wrap: wrap;
       justify-content: center;
-      gap: 18px;
-      margin: 14px 0 16px;
+      flex-wrap: wrap;
+      gap: 16px;
+      margin-top: 16px;
     }
     .ev-circle {
       width: 110px;
       height: 110px;
       border-radius: 50%;
-      border: 2px solid rgba(21,101,192,0.5);
-      background-image: url("ev.png"); /* 這裡用你 PPT 匯出的圖 */
+      background-image: url("ev.png");
       background-size: cover;
-      background-position: center;
+      border: 2px solid rgba(21,101,192,0.5);
       position: relative;
       cursor: pointer;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.15);
-      overflow: hidden;
-      transition: transform 0.15s, box-shadow 0.15s, border-color 0.15s;
-    }
-    .ev-circle::after {
-      content: "";
-      position: absolute;
-      inset: 0;
-      background: radial-gradient(circle at top, rgba(255,255,255,0.25), transparent 55%);
-      mix-blend-mode: screen;
-      pointer-events: none;
     }
     .ev-circle span {
       position: absolute;
-      left: 50%;
       bottom: 8px;
+      left: 50%;
       transform: translateX(-50%);
+      font-size: 0.8rem;
+      background: rgba(0,0,0,0.6);
       padding: 3px 8px;
+      color: white;
       border-radius: 999px;
-      background-color: rgba(0,0,0,0.6);
-      color: #fff;
-      font-size: 0.78rem;
-      letter-spacing: 0.03em;
-    }
-    .ev-circle:hover {
-      transform: translateY(-2px) scale(1.03);
-      box-shadow: 0 6px 16px rgba(0,0,0,0.2);
-      border-color: #1565c0;
     }
     .ev-circle.active {
-      transform: translateY(-2px) scale(1.05);
+      transform: scale(1.07);
       border-color: #0d47a1;
-      box-shadow: 0 8px 20px rgba(0,0,0,0.25);
-    }
-
-    .ev-detail {
-      border-radius: 14px;
-      border: 1px solid #e0e0e0;
-      padding: 12px 14px;
-      background-color: #fcfcfc;
-      font-size: 0.9rem;
-    }
-    .ev-detail h3 {
-      font-size: 1rem;
-      margin-bottom: 4px;
-      color: #0d47a1;
-    }
-
-    /* PBMC 區塊 */
-    .pbmc-layout {
-      display: grid;
-      grid-template-columns: minmax(0, 1.2fr) minmax(0, 1.1fr);
-      gap: 16px;
-      margin-top: 10px;
-    }
-    .pbmc-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-      gap: 10px;
-    }
-    .pbmc-item {
-      border-radius: 12px;
-      border: 1px solid #e0e0e0;
-      padding: 10px 12px;
-      background-color: #fafafa;
-      font-size: 0.9rem;
-      cursor: pointer;
-      transition: background-color 0.15s, border-color 0.15s, transform 0.1s;
-    }
-    .pbmc-item:hover {
-      background-color: #e3f2fd;
-      border-color: #1565c0;
-      transform: translateY(-1px);
-    }
-    .pbmc-item.active {
-      background-color: #bbdefb;
-      border-color: #0d47a1;
-    }
-    .pbmc-item-title {
-      font-weight: 600;
-      color: #1565c0;
-      margin-bottom: 2px;
-    }
-    .pbmc-item-short {
-      font-size: 0.8rem;
-      color: #555;
-    }
-    .pbmc-detail {
-      border-radius: 14px;
-      border: 1px solid #e0e0e0;
-      padding: 12px 14px;
-      background-color: #fcfcfc;
-      font-size: 0.9rem;
-    }
-    .pbmc-detail h3 {
-      font-size: 1rem;
-      margin-bottom: 4px;
-      color: #0d47a1;
-    }
-
-    /* Contact */
-    .contact-list {
-      list-style: none;
-      margin-left: 0;
-    }
-    .contact-list li {
-      margin-bottom: 4px;
-      font-size: 0.9rem;
-    }
-
-    footer {
-      text-align: center;
-      font-size: 0.8rem;
-      color: #666;
-      padding: 20px 10px 30px;
-    }
-
-    @media (min-width: 768px) {
-      .hero-inner {
-        flex-direction: row;
-        text-align: left;
-        justify-content: center;
-        align-items: center;
-      }
-      .hero-text p {
-        margin: 0;
-      }
-    }
-    @media (max-width: 720px) {
-      header { padding: 40px 16px 60px; }
-      .hero-text h1 { font-size: 2.2rem; }
-      .hero-text h2 { font-size: 1rem; }
-      .two-col { grid-template-columns: 1fr; }
-      .pbmc-layout { grid-template-columns: 1fr; }
-      main { margin-top: -20px; }
     }
   </style>
 </head>
+
 <body>
-  <!-- HERO -->
-  <header id="top">
-    <div class="hero-inner">
-      <div class="hero-avatar">
-        <img src="sky.png" alt="Sky Lin Portrait" />
-      </div>
-      <div class="hero-text">
-        <h1>SKY LIN</h1>
-        <h2>Power Electronics & EV Power Systems</h2>
-        <p>
-          電力電子與電動車電源系統工程師，專注於高功率、高效率與高可靠度的設計。
-          我相信好的電源設計可以同時推動產業發展，也讓世界更乾淨、更永續。
-        </p>
-      </div>
+<header>
+  <div class="hero-avatar"><img src="sky.png"></div>
+  <h1>Sky Lin</h1>
+  <h2>Power Electronics & EV Systems Engineer</h2>
+  <p style="max-width:700px;margin:auto;opacity:0.9;">
+    Designing efficient and reliable power systems for electric vehicles and clean energy innovation.
+  </p>
+</header>
+
+<nav>
+  <a href="#highlight">Highlights</a>
+  <a href="#ev">EV Experience</a>
+  <a href="#q">Three Questions</a>
+  <a href="#pbmc">PBMC</a>
+  <a href="#contact">Contact</a>
+</nav>
+
+<main>
+
+<section id="highlight" class="card">
+  <h2>Professional Highlights</h2>
+  <ul>
+    <li>Power system design for EV and clean technology</li>
+    <li>Converter design, testing, and system integration</li>
+    <li>Hands-on engineering + sustainability-driven mindset</li>
+  </ul>
+</section>
+
+<section id="ev" class="card">
+  <h2>EV Power System Experience</h2>
+  <p>Select a component to learn more:</p>
+
+  <div class="ev-circles">
+    <div class="ev-circle active" data-title="HVDC Battery"
+         data-desc="Main EV energy source. Safety, thermal reliability, and lifespan are key.">
+      <span>Battery</span>
     </div>
-  </header>
+    <div class="ev-circle" data-title="On-Board Charger (OBCM)"
+         data-desc="AC to DC conversion. Efficiency and bidirectional charging (V2G).">
+      <span>OBCM</span>
+    </div>
+    <div class="ev-circle" data-title="Traction Inverter"
+         data-desc="DC to AC motor drive with regenerative braking. SiC devices for high efficiency.">
+      <span>Inverter</span>
+    </div>
+    <div class="ev-circle" data-title="Motor"
+         data-desc="Energy conversion to motion and regenerative braking recovery.">
+      <span>Motor</span>
+    </div>
+  </div>
 
-  <!-- 導覽列 -->
-  <nav>
-    <ul>
-      <li><a href="#highlight">專業亮點 Highlight</a></li>
-      <li><a href="#ev">EV 經驗</a></li>
-      <li><a href="#q">Three Questions</a></li>
-      <li><a href="#pbmc">PBMC 商業模式</a></li>
-      <li><a href="#contact">Contact</a></li>
-    </ul>
-  </nav>
+  <div id="ev-detail" style="margin-top:15px;">
+    <h3 id="ev-detail-title">HVDC Battery</h3>
+    <p id="ev-detail-text">
+      Main EV energy source. Safety, thermal reliability, and lifespan are key.
+    </p>
+  </div>
+</section>
+<section id="q" class="card">
+  <h2>The Three Questions</h2>
+  <ul>
+    <li><strong>What motivates you most?</strong> Solving impossible challenges.</li>
+    <li><strong>Who inspires you?</strong> Engineers shaping a sustainable future.</li>
+    <li><strong>How do you want to be remembered?</strong> Reliable, curious, supportive.</li>
+  </ul>
+</section>
 
-  <main>
-    <!-- 專業亮點 -->
-    <section id="highlight" class="card">
-      <h2>Professional Highlight</h2>
-      <p class="section-subtitle">以簡報為基礎，統整成網站版的專業簡介。</p>
+<section id="pbmc" class="card">
+  <h2>Personal Business Model Canvas</h2>
+  <ul>
+    <li><strong>Value Proposition:</strong> High-efficiency power solutions</li>
+    <li><strong>Key Activities:</strong> Design, testing, debugging, teamwork</li>
+    <li><strong>Partners:</strong> R&D groups and clean tech developers</li>
+    <li><strong>Resources:</strong> Technical skills and hands-on practice</li>
+    <li><strong>Target Users:</strong> EV and clean energy industries</li>
+  </ul>
+</section>
 
-      <div class="two-col">
-        <div>
-          <h3>Education / Background</h3>
-          <ul>
-            <li>Ph.D in Power Electronics</li>
-            <li>25+ years experience in EV, server and telecom power systems</li>
-          </ul>
+<section id="contact" class="card">
+  <h2>Contact</h2>
+  <p>Email: <a href="mailto:sky880025@gmail.com">sky880025@gmail.com</a></p>
+</section>
 
-          <h3>One-line Summary</h3>
-          <div class="quote">
-            From AC/DC desktop adapters to high-power EV systems, I design
-            reliable and efficient power solutions that move products — and
-            people — forward.
-          </div>
+</main>
 
-          <div class="tag-row">
-            <span class="tag">Power Electronics</span>
-            <span class="tag">Electric Vehicle</span>
-            <span class="tag">SiC MOSFET</span>
-            <span class="tag">High Power Design</span>
-          </div>
-        </div>
+<footer style="text-align:center;margin:20px 0;color:#555;">
+  © <span id="year"></span> Sky Lin — All Rights Reserved
+</footer>
 
-        <div>
-          <h3>Selected Experiences</h3>
-          <ul>
-            <li>EV power design including OBCM, auxiliary power and EVCC integration.</li>
-            <li>Switching power supply design from 65 W up to multi-kW applications.</li>
-            <li>Server & telecom power systems with three-phase, high-density solutions.</li>
-            <li>Battery backup units for data centers and telecom infrastructure.</li>
-          </ul>
-        </div>
-      </div>
-    </section>
+<script>
+document.getElementById("year").textContent = new Date().getFullYear();
+const circles = document.querySelectorAll(".ev-circle");
+const title = document.getElementById("ev-detail-title");
+const text = document.getElementById("ev-detail-text");
 
-    <!-- EV：圓形互動 -->
-    <section id="ev" class="card">
-      <h2>EV Power System Experience</h2>
-      <p class="section-subtitle">
-        點選不同的圓形元件，快速了解我在電動車電源系統中的設計重點。
-      </p>
+circles.forEach(c => {
+  c.addEventListener("click", () => {
+    circles.forEach(x => x.classList.remove("active"));
+    c.classList.add("active");
+    title.textContent = c.dataset.title;
+    text.textContent = c.dataset.desc;
+  });
+});
+</script>
 
-      <div class="ev-circles">
-        <div
-          class="ev-circle active"
-          data-title="HVDC Battery｜高壓電池"
-          data-desc="High-voltage DC battery pack as the main energy source for traction and auxiliary systems. Design focus: safety, lifespan, thermal performance and accurate SOC/SOH estimation."
-        >
-          <span>HVDC Battery</span>
-        </div>
-
-        <div
-          class="ev-circle"
-          data-title="On-Board Charger (OBCM)｜車載充電器"
-          data-desc="On-board charger converting AC from the grid to DC for the HV battery. Focus on efficiency, power factor correction, bidirectional operation and charging profiles."
-        >
-          <span>OBCM</span>
-        </div>
-
-        <div
-          class="ev-circle"
-          data-title="Traction Inverter｜驅動逆變器"
-          data-desc="Inverter driving the motor from the HV battery, and handling regenerative braking. Key topics: SiC MOSFET usage, switching strategy, thermal design and EMI control."
-        >
-          <span>Inverter</span>
-        </div>
-
-        <div
-          class="ev-circle"
-          data-title="Electric Motor｜電動馬達"
-          data-desc="Motor converts electrical energy into mechanical torque and feeds energy back during braking. System work includes matching inverter control, efficiency map and NVH consideration."
-        >
-          <span>Motor</span>
-        </div>
-      </div>
-
-      <div class="ev-detail">
-        <h3 id="ev-detail-title">HVDC Battery｜高壓電池</h3>
-        <p id="ev-detail-text">
-          High-voltage DC battery pack as the main energy source for traction and auxiliary systems. Design focus: safety, lifespan, thermal performance and accurate SOC/SOH estimation.
-        </p>
-      </div>
-    </section>
-
-    <!-- Three Questions -->
-    <section id="q" class="card">
-      <h2>The Three Questions</h2>
-      <p class="section-subtitle">用三個問題，整理我在工作與人生中的核心動力。</p>
-
-      <div class="q-wrapper">
-        <div class="q-card" data-index="0">
-          <div class="q-card-title">
-            1. 什麼時候你感到最有成就感？<br />
-            <span style="font-size:0.8rem;color:#777;">When do you feel most energized and fulfilled?</span>
-          </div>
-          <div class="q-card-body">
-            When I work with my team to solve a tough power design problem and
-            finally see the hardware pass every test, I feel truly fulfilled.
-            Long nights in the lab, endless debugging, and then that moment
-            when everything works — that process is what keeps me motivated.
-          </div>
-        </div>
-
-        <div class="q-card" data-index="1">
-          <div class="q-card-title">
-            2. 你最欣賞的榜樣是誰？為什麼？<br />
-            <span style="font-size:0.8rem;color:#777;">Who is your role model and why?</span>
-          </div>
-          <div class="q-card-body">
-            I look up to T. C. Cheng from Delta Electronics. He shows how deep
-            technical expertise and a long-term vision for sustainability can
-            coexist. His leadership proves that power electronics can drive
-            both business growth and positive environmental impact.
-          </div>
-        </div>
-
-        <div class="q-card" data-index="2">
-          <div class="q-card-title">
-            3. 你希望別人怎麼記得你？<br />
-            <span style="font-size:0.8rem;color:#777;">How would you like to be remembered?</span>
-          </div>
-          <div class="q-card-body">
-            I hope people remember me as someone who is reliable, curious and
-            kind — an engineer who cares not only about numbers, but also about
-            people and the planet. Someone who quietly pushes projects forward
-            and helps others grow along the way.
-          </div>
-        </div>
-
-        <div class="q-controls">
-          <div class="q-buttons">
-            <button class="btn" id="q-prev">〈 上一題</button>
-            <button class="btn" id="q-next">下一題 〉</button>
-          </div>
-          <div class="q-index" id="q-index-text"></div>
-        </div>
-      </div>
-    </section>
-
-    <!-- PBMC -->
-    <section id="pbmc" class="card">
-      <h2>Personal Business Model Canvas (PBMC)</h2>
-      <p class="section-subtitle">
-        把自己當成一個小型事業：點選左邊任一格子，右邊會顯示更完整的說明。
-      </p>
-
-      <div class="pbmc-layout">
-        <div class="pbmc-grid">
-          <div
-            class="pbmc-item active"
-            data-title="Key Partners｜關鍵夥伴"
-            data-detail="Supervisors, R&D teams, industry partners and academic collaborators who support my growth in power electronics and EV development."
-          >
-            <div class="pbmc-item-title">Key Partners</div>
-            <div class="pbmc-item-short">指導教授、研發團隊、產學合作夥伴</div>
-          </div>
-
-          <div
-            class="pbmc-item"
-            data-title="Key Activities｜關鍵活動"
-            data-detail="Designing and prototyping power converters, defining EV power architectures, testing, debugging and mentoring younger engineers."
-          >
-            <div class="pbmc-item-title">Key Activities</div>
-            <div class="pbmc-item-short">設計、驗證、除錯、帶領團隊</div>
-          </div>
-
-          <div
-            class="pbmc-item"
-            data-title="Key Resources｜關鍵資源"
-            data-detail="Technical expertise in power electronics, years of project experience, leadership skills and access to lab facilities and tools."
-          >
-            <div class="pbmc-item-title">Key Resources</div>
-            <div class="pbmc-item-short">專業知識、實務經驗、實驗室資源</div>
-          </div>
-
-          <div
-            class="pbmc-item"
-            data-title="Value Proposition｜價值主張"
-            data-detail="Provide reliable, efficient and scalable power solutions for EV, server and telecom applications, aligned with safety and sustainability."
-          >
-            <div class="pbmc-item-title">Value Proposition</div>
-            <div class="pbmc-item-short">穩定、高效又可靠的電源方案</div>
-          </div>
-
-          <div
-            class="pbmc-item"
-            data-title="Customer Segments｜服務對象"
-            data-detail="EV manufacturers, server and telecom companies, R&D organizations and teams needing high-power, high-reliability power systems."
-          >
-            <div class="pbmc-item-title">Customer Segments</div>
-            <div class="pbmc-item-short">EV / Server / Telecom 客戶</div>
-          </div>
-
-          <div
-            class="pbmc-item"
-            data-title="Channels｜通路"
-            data-detail="Technical projects, joint developments, conferences, publications and internal/external trainings."
-          >
-            <div class="pbmc-item-title">Channels</div>
-            <div class="pbmc-item-short">專案合作、會議、技術分享</div>
-          </div>
-
-          <div
-            class="pbmc-item"
-            data-title="Customer Relationships｜關係"
-            data-detail="Building long-term partnerships based on trust, consistent technical quality and clear communication."
-          >
-            <div class="pbmc-item-title">Customer Relationships</div>
-            <div class="pbmc-item-short">長期合作關係與信任</div>
-          </div>
-
-          <div
-            class="pbmc-item"
-            data-title="Cost Structure｜成本結構"
-            data-detail="Time and effort invested in R&D, tools and lab equipment, continuous learning and team development."
-          >
-            <div class="pbmc-item-title">Cost Structure</div>
-            <div class="pbmc-item-short">時間、學習與設備投入</div>
-          </div>
-
-          <div
-            class="pbmc-item"
-            data-title="Revenue / Returns｜收益"
-            data-detail="Successful projects, product performance improvements, leadership opportunities and contribution to greener technologies."
-          >
-            <div class="pbmc-item-title">Revenue / Returns</div>
-            <div class="pbmc-item-short">專案成果與長期職涯回報</div>
-          </div>
-        </div>
-
-        <div class="pbmc-detail">
-          <h3 id="pbmc-detail-title">Key Partners｜關鍵夥伴</h3>
-          <p id="pbmc-detail-text">
-            Supervisors, R&D teams, industry partners and academic collaborators
-            who support my growth in power electronics and EV development.
-          </p>
-        </div>
-      </div>
-    </section>
-
-    <!-- Contact -->
-    <section id="contact" class="card">
-      <h2>Contact</h2>
-      <ul class="contact-list">
-        <li>📧 Email：<a href="mailto:sky880025@gmail.com">sky880025@gmail.com</a></li>
-      </ul>
-    </section>
-  </main>
-
-  <footer>
-    © <span id="year"></span> Sky Lin · Personal Branding Site
-  </footer>
-
-  <script>
-    // 年份
-    document.getElementById("year").textContent = new Date().getFullYear();
-
-    // 三個問題
-    const qCards = document.querySelectorAll(".q-card");
-    const qIndexText = document.getElementById("q-index-text");
-    let currentQ = 0;
-
-    function showQuestion(index) {
-      qCards.forEach((card, i) => {
-        card.style.display = i === index ? "block" : "none";
-      });
-      qIndexText.textContent = (index + 1) + " / " + qCards.length;
-    }
-    document.getElementById("q-prev").addEventListener("click", () => {
-      currentQ = (currentQ - 1 + qCards.length) % qCards.length;
-      showQuestion(currentQ);
-    });
-    document.getElementById("q-next").addEventListener("click", () => {
-      currentQ = (currentQ + 1) % qCards.length;
-      showQuestion(currentQ);
-    });
-    showQuestion(currentQ);
-
-    // PBMC
-    const pbmcItems = document.querySelectorAll(".pbmc-item");
-    const pbmcTitle = document.getElementById("pbmc-detail-title");
-    const pbmcText = document.getElementById("pbmc-detail-text");
-    pbmcItems.forEach((item) => {
-      item.addEventListener("click", () => {
-        pbmcItems.forEach(i => i.classList.remove("active"));
-        item.classList.add("active");
-        pbmcTitle.textContent = item.dataset.title;
-        pbmcText.textContent = item.dataset.detail;
-      });
-    });
-
-    // EV 圓形互動
-    const evCircles = document.querySelectorAll(".ev-circle");
-    const evTitle = document.getElementById("ev-detail-title");
-    const evText = document.getElementById("ev-detail-text");
-    evCircles.forEach(circle => {
-      circle.addEventListener("click", () => {
-        evCircles.forEach(c => c.classList.remove("active"));
-        circle.classList.add("active");
-        evTitle.textContent = circle.dataset.title;
-        evText.textContent = circle.dataset.desc;
-      });
-    });
-  </script>
 </body>
 </html>
