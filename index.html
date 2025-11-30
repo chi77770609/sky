@@ -19,7 +19,7 @@
       scroll-behavior: smooth;
     }
 
-    /* 頂部區域：名字＋大頭照 */
+    /* 頂部：大頭照 + 簡介 */
     header {
       background: radial-gradient(circle at top, #42a5f5, #0d47a1);
       color: white;
@@ -28,7 +28,6 @@
       position: relative;
       overflow: hidden;
     }
-
     header::after {
       content: "";
       position: absolute;
@@ -36,7 +35,6 @@
       background: radial-gradient(circle at 20% 0, rgba(255,255,255,0.15), transparent 60%);
       pointer-events: none;
     }
-
     .hero-inner {
       position: relative;
       max-width: 900px;
@@ -47,7 +45,6 @@
       gap: 16px;
       z-index: 1;
     }
-
     .hero-avatar {
       width: 140px;
       height: 140px;
@@ -57,28 +54,24 @@
       box-shadow: 0 8px 20px rgba(0,0,0,0.25);
       background-color: rgba(255,255,255,0.2);
     }
-
     .hero-avatar img {
       width: 100%;
       height: 100%;
       object-fit: cover;
       display: block;
     }
-
     .hero-text h1 {
       font-size: 2.6rem;
       margin-bottom: 6px;
       letter-spacing: 0.12em;
       text-transform: uppercase;
     }
-
     .hero-text h2 {
       font-size: 1.1rem;
       font-weight: 400;
       opacity: 0.9;
       margin-bottom: 10px;
     }
-
     .hero-text p {
       font-size: 0.95rem;
       opacity: 0.85;
@@ -93,7 +86,6 @@
       top: 0;
       z-index: 10;
     }
-
     nav ul {
       list-style: none;
       display: flex;
@@ -102,7 +94,6 @@
       gap: 12px;
       padding: 10px 16px;
     }
-
     nav a {
       text-decoration: none;
       color: #1565c0;
@@ -111,19 +102,17 @@
       border-radius: 999px;
       transition: background-color 0.2s, transform 0.1s;
     }
-
     nav a:hover {
       background-color: rgba(21,101,192,0.08);
       transform: translateY(-1px);
     }
 
-    /* 主要內容區 */
+    /* 主內容 */
     main {
       max-width: 1040px;
       margin: -30px auto 40px;
       padding: 0 16px;
     }
-
     .card {
       background-color: white;
       border-radius: 18px;
@@ -131,26 +120,22 @@
       box-shadow: 0 4px 18px rgba(0,0,0,0.06);
       margin-bottom: 22px;
     }
-
     .card h2 {
       font-size: 1.5rem;
       margin-bottom: 10px;
       color: #1565c0;
     }
-
     .card h3 {
       font-size: 1.05rem;
       margin-top: 12px;
       margin-bottom: 4px;
       color: #333;
     }
-
     .section-subtitle {
       font-size: 0.9rem;
       color: #757575;
       margin-bottom: 8px;
     }
-
     .tag-row {
       display: flex;
       flex-wrap: wrap;
@@ -158,7 +143,6 @@
       margin-top: 8px;
       margin-bottom: 4px;
     }
-
     .tag {
       background-color: #e3f2fd;
       color: #1565c0;
@@ -166,18 +150,15 @@
       padding: 4px 10px;
       border-radius: 999px;
     }
-
     ul {
       margin-left: 1.2rem;
       margin-top: 4px;
     }
-
     .two-col {
       display: grid;
       grid-template-columns: 1.1fr 1.2fr;
       gap: 16px;
     }
-
     .quote {
       border-left: 3px solid #bbdefb;
       padding-left: 10px;
@@ -191,26 +172,22 @@
       flex-direction: column;
       gap: 12px;
     }
-
     .q-card {
       border-radius: 14px;
       border: 1px solid #e3f2fd;
       padding: 12px 14px;
       background: #fafafa;
-      display: none; /* JS 控制顯示哪一張 */
+      display: none;
     }
-
     .q-card-title {
       font-weight: 600;
       font-size: 0.95rem;
       color: #0d47a1;
       margin-bottom: 6px;
     }
-
     .q-card-body {
       font-size: 0.9rem;
     }
-
     .q-controls {
       display: flex;
       justify-content: space-between;
@@ -218,12 +195,10 @@
       margin-top: 8px;
       gap: 8px;
     }
-
     .q-buttons {
       display: flex;
       gap: 8px;
     }
-
     .btn {
       border: none;
       border-radius: 999px;
@@ -234,31 +209,93 @@
       color: #1565c0;
       transition: background-color 0.15s, transform 0.1s;
     }
-
     .btn:hover {
       background-color: #bbdefb;
       transform: translateY(-1px);
     }
-
     .q-index {
       font-size: 0.85rem;
       color: #777;
     }
 
-    /* PBMC 區塊：左邊格子、右邊詳細說明 */
+    /* EV 圓形互動區 */
+    .ev-circles {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 18px;
+      margin: 14px 0 16px;
+    }
+    .ev-circle {
+      width: 110px;
+      height: 110px;
+      border-radius: 50%;
+      border: 2px solid rgba(21,101,192,0.5);
+      background-image: url("ev.png"); /* 這裡用你 PPT 匯出的圖 */
+      background-size: cover;
+      background-position: center;
+      position: relative;
+      cursor: pointer;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+      overflow: hidden;
+      transition: transform 0.15s, box-shadow 0.15s, border-color 0.15s;
+    }
+    .ev-circle::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at top, rgba(255,255,255,0.25), transparent 55%);
+      mix-blend-mode: screen;
+      pointer-events: none;
+    }
+    .ev-circle span {
+      position: absolute;
+      left: 50%;
+      bottom: 8px;
+      transform: translateX(-50%);
+      padding: 3px 8px;
+      border-radius: 999px;
+      background-color: rgba(0,0,0,0.6);
+      color: #fff;
+      font-size: 0.78rem;
+      letter-spacing: 0.03em;
+    }
+    .ev-circle:hover {
+      transform: translateY(-2px) scale(1.03);
+      box-shadow: 0 6px 16px rgba(0,0,0,0.2);
+      border-color: #1565c0;
+    }
+    .ev-circle.active {
+      transform: translateY(-2px) scale(1.05);
+      border-color: #0d47a1;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.25);
+    }
+
+    .ev-detail {
+      border-radius: 14px;
+      border: 1px solid #e0e0e0;
+      padding: 12px 14px;
+      background-color: #fcfcfc;
+      font-size: 0.9rem;
+    }
+    .ev-detail h3 {
+      font-size: 1rem;
+      margin-bottom: 4px;
+      color: #0d47a1;
+    }
+
+    /* PBMC 區塊 */
     .pbmc-layout {
       display: grid;
       grid-template-columns: minmax(0, 1.2fr) minmax(0, 1.1fr);
       gap: 16px;
       margin-top: 10px;
     }
-
     .pbmc-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
       gap: 10px;
     }
-
     .pbmc-item {
       border-radius: 12px;
       border: 1px solid #e0e0e0;
@@ -268,29 +305,24 @@
       cursor: pointer;
       transition: background-color 0.15s, border-color 0.15s, transform 0.1s;
     }
-
     .pbmc-item:hover {
       background-color: #e3f2fd;
       border-color: #1565c0;
       transform: translateY(-1px);
     }
-
     .pbmc-item.active {
       background-color: #bbdefb;
       border-color: #0d47a1;
     }
-
     .pbmc-item-title {
       font-weight: 600;
       color: #1565c0;
       margin-bottom: 2px;
     }
-
     .pbmc-item-short {
       font-size: 0.8rem;
       color: #555;
     }
-
     .pbmc-detail {
       border-radius: 14px;
       border: 1px solid #e0e0e0;
@@ -298,15 +330,10 @@
       background-color: #fcfcfc;
       font-size: 0.9rem;
     }
-
     .pbmc-detail h3 {
       font-size: 1rem;
       margin-bottom: 4px;
       color: #0d47a1;
-    }
-
-    .pbmc-detail p {
-      margin-top: 4px;
     }
 
     /* Contact */
@@ -314,7 +341,6 @@
       list-style: none;
       margin-left: 0;
     }
-
     .contact-list li {
       margin-bottom: 4px;
       font-size: 0.9rem;
@@ -338,7 +364,6 @@
         margin: 0;
       }
     }
-
     @media (max-width: 720px) {
       header { padding: 40px 16px 60px; }
       .hero-text h1 { font-size: 2.2rem; }
@@ -350,14 +375,12 @@
   </style>
 </head>
 <body>
-  <!-- HERO：大頭照 + 介紹 -->
+  <!-- HERO -->
   <header id="top">
     <div class="hero-inner">
-      <!-- 你的大頭照：檔名 sky.png 要放在同一個 repo 根目錄 -->
       <div class="hero-avatar">
         <img src="sky.png" alt="Sky Lin Portrait" />
       </div>
-
       <div class="hero-text">
         <h1>SKY LIN</h1>
         <h2>Power Electronics & EV Power Systems</h2>
@@ -421,37 +444,52 @@
       </div>
     </section>
 
-    <!-- EV 經驗 -->
+    <!-- EV：圓形互動 -->
     <section id="ev" class="card">
       <h2>EV Power System Experience</h2>
-      <p class="section-subtitle">從電池、充電器到 traction inverter 的完整系統視角。</p>
+      <p class="section-subtitle">
+        點選不同的圓形元件，快速了解我在電動車電源系統中的設計重點。
+      </p>
 
-      <div class="two-col">
-        <div>
-          <h3>Why EV Matters</h3>
-          <ul>
-            <li>Higher energy efficiency compared to traditional ICE vehicles.</li>
-            <li>Lower local emissions and quieter, smoother driving.</li>
-            <li>Better integration with renewable energy and smart grid.</li>
-          </ul>
-
-          <h3>Design Focus</h3>
-          <ul>
-            <li>High efficiency and power density.</li>
-            <li>Thermal management and reliability under harsh conditions.</li>
-            <li>System-level safety and diagnostic functions.</li>
-          </ul>
+      <div class="ev-circles">
+        <div
+          class="ev-circle active"
+          data-title="HVDC Battery｜高壓電池"
+          data-desc="High-voltage DC battery pack as the main energy source for traction and auxiliary systems. Design focus: safety, lifespan, thermal performance and accurate SOC/SOH estimation."
+        >
+          <span>HVDC Battery</span>
         </div>
 
-        <div>
-          <h3>Key Components I Work With</h3>
-          <ul>
-            <li><strong>HVDC Battery</strong> – energy source for traction and auxiliary loads.</li>
-            <li><strong>On-Board Charger (OBCM)</strong> – AC to DC conversion and battery charging control.</li>
-            <li><strong>Traction Inverter</strong> – DC to AC conversion for the motor, including regenerative braking.</li>
-            <li><strong>Electric Motor</strong> – delivers torque to the wheels and energy feedback during braking.</li>
-          </ul>
+        <div
+          class="ev-circle"
+          data-title="On-Board Charger (OBCM)｜車載充電器"
+          data-desc="On-board charger converting AC from the grid to DC for the HV battery. Focus on efficiency, power factor correction, bidirectional operation and charging profiles."
+        >
+          <span>OBCM</span>
         </div>
+
+        <div
+          class="ev-circle"
+          data-title="Traction Inverter｜驅動逆變器"
+          data-desc="Inverter driving the motor from the HV battery, and handling regenerative braking. Key topics: SiC MOSFET usage, switching strategy, thermal design and EMI control."
+        >
+          <span>Inverter</span>
+        </div>
+
+        <div
+          class="ev-circle"
+          data-title="Electric Motor｜電動馬達"
+          data-desc="Motor converts electrical energy into mechanical torque and feeds energy back during braking. System work includes matching inverter control, efficiency map and NVH consideration."
+        >
+          <span>Motor</span>
+        </div>
+      </div>
+
+      <div class="ev-detail">
+        <h3 id="ev-detail-title">HVDC Battery｜高壓電池</h3>
+        <p id="ev-detail-text">
+          High-voltage DC battery pack as the main energy source for traction and auxiliary systems. Design focus: safety, lifespan, thermal performance and accurate SOC/SOH estimation.
+        </p>
       </div>
     </section>
 
@@ -461,7 +499,6 @@
       <p class="section-subtitle">用三個問題，整理我在工作與人生中的核心動力。</p>
 
       <div class="q-wrapper">
-        <!-- Q1 -->
         <div class="q-card" data-index="0">
           <div class="q-card-title">
             1. 什麼時候你感到最有成就感？<br />
@@ -475,7 +512,6 @@
           </div>
         </div>
 
-        <!-- Q2 -->
         <div class="q-card" data-index="1">
           <div class="q-card-title">
             2. 你最欣賞的榜樣是誰？為什麼？<br />
@@ -489,7 +525,6 @@
           </div>
         </div>
 
-        <!-- Q3 -->
         <div class="q-card" data-index="2">
           <div class="q-card-title">
             3. 你希望別人怎麼記得你？<br />
@@ -503,7 +538,6 @@
           </div>
         </div>
 
-        <!-- 控制按鈕 -->
         <div class="q-controls">
           <div class="q-buttons">
             <button class="btn" id="q-prev">〈 上一題</button>
@@ -615,7 +649,7 @@
       </div>
     </section>
 
-    <!-- Contact：只留 Email -->
+    <!-- Contact -->
     <section id="contact" class="card">
       <h2>Contact</h2>
       <ul class="contact-list">
@@ -629,10 +663,10 @@
   </footer>
 
   <script>
-    // 年份顯示
+    // 年份
     document.getElementById("year").textContent = new Date().getFullYear();
 
-    // 三個問題：卡片切換
+    // 三個問題
     const qCards = document.querySelectorAll(".q-card");
     const qIndexText = document.getElementById("q-index-text");
     let currentQ = 0;
@@ -643,31 +677,39 @@
       });
       qIndexText.textContent = (index + 1) + " / " + qCards.length;
     }
-
     document.getElementById("q-prev").addEventListener("click", () => {
       currentQ = (currentQ - 1 + qCards.length) % qCards.length;
       showQuestion(currentQ);
     });
-
     document.getElementById("q-next").addEventListener("click", () => {
       currentQ = (currentQ + 1) % qCards.length;
       showQuestion(currentQ);
     });
-
-    // 初始化顯示第一題
     showQuestion(currentQ);
 
-    // PBMC：點格子 → 更新右側說明
+    // PBMC
     const pbmcItems = document.querySelectorAll(".pbmc-item");
     const pbmcTitle = document.getElementById("pbmc-detail-title");
     const pbmcText = document.getElementById("pbmc-detail-text");
-
     pbmcItems.forEach((item) => {
       item.addEventListener("click", () => {
         pbmcItems.forEach(i => i.classList.remove("active"));
         item.classList.add("active");
         pbmcTitle.textContent = item.dataset.title;
         pbmcText.textContent = item.dataset.detail;
+      });
+    });
+
+    // EV 圓形互動
+    const evCircles = document.querySelectorAll(".ev-circle");
+    const evTitle = document.getElementById("ev-detail-title");
+    const evText = document.getElementById("ev-detail-text");
+    evCircles.forEach(circle => {
+      circle.addEventListener("click", () => {
+        evCircles.forEach(c => c.classList.remove("active"));
+        circle.classList.add("active");
+        evTitle.textContent = circle.dataset.title;
+        evText.textContent = circle.dataset.desc;
       });
     });
   </script>
