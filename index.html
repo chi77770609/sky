@@ -1,0 +1,642 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8" />
+  <title>Sky Lin｜Personal Branding Website</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta
+    name="description"
+    content="Personal branding website of Sky Lin: professional highlights, EV experience, three questions, and personal business model canvas (PBMC)."
+  />
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      line-height: 1.6;
+      color: #222;
+      background-color: #f5f5f5;
+      scroll-behavior: smooth;
+    }
+
+    /* 頂部區域：名字＋一句話 */
+    header {
+      background: radial-gradient(circle at top, #42a5f5, #0d47a1);
+      color: white;
+      padding: 60px 16px 80px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    header::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at 20% 0, rgba(255,255,255,0.15), transparent 60%);
+      pointer-events: none;
+    }
+
+    header h1 {
+      font-size: 2.6rem;
+      margin-bottom: 6px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
+
+    header h2 {
+      font-size: 1.1rem;
+      font-weight: 400;
+      opacity: 0.9;
+      margin-bottom: 10px;
+    }
+
+    header p {
+      font-size: 0.95rem;
+      opacity: 0.85;
+      max-width: 720px;
+      margin: 0 auto;
+    }
+
+    /* 導覽列 */
+    nav {
+      background-color: white;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+      position: sticky;
+      top: 0;
+      z-index: 10;
+    }
+
+    nav ul {
+      list-style: none;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 12px;
+      padding: 10px 16px;
+    }
+
+    nav a {
+      text-decoration: none;
+      color: #1565c0;
+      font-size: 0.9rem;
+      padding: 6px 12px;
+      border-radius: 999px;
+      transition: background-color 0.2s, transform 0.1s;
+    }
+
+    nav a:hover {
+      background-color: rgba(21,101,192,0.08);
+      transform: translateY(-1px);
+    }
+
+    /* 主要內容區 */
+    main {
+      max-width: 1040px;
+      margin: -30px auto 40px;
+      padding: 0 16px;
+    }
+
+    .card {
+      background-color: white;
+      border-radius: 18px;
+      padding: 22px 22px 26px;
+      box-shadow: 0 4px 18px rgba(0,0,0,0.06);
+      margin-bottom: 22px;
+    }
+
+    .card h2 {
+      font-size: 1.5rem;
+      margin-bottom: 10px;
+      color: #1565c0;
+    }
+
+    .card h3 {
+      font-size: 1.05rem;
+      margin-top: 12px;
+      margin-bottom: 4px;
+      color: #333;
+    }
+
+    .section-subtitle {
+      font-size: 0.9rem;
+      color: #757575;
+      margin-bottom: 8px;
+    }
+
+    .tag-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 8px;
+      margin-bottom: 4px;
+    }
+
+    .tag {
+      background-color: #e3f2fd;
+      color: #1565c0;
+      font-size: 0.8rem;
+      padding: 4px 10px;
+      border-radius: 999px;
+    }
+
+    ul {
+      margin-left: 1.2rem;
+      margin-top: 4px;
+    }
+
+    .two-col {
+      display: grid;
+      grid-template-columns: 1.1fr 1.2fr;
+      gap: 16px;
+    }
+
+    .quote {
+      border-left: 3px solid #bbdefb;
+      padding-left: 10px;
+      margin-top: 6px;
+      font-size: 0.95rem;
+    }
+
+    /* 三個問題：可切換卡片 */
+    .q-wrapper {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .q-card {
+      border-radius: 14px;
+      border: 1px solid #e3f2fd;
+      padding: 12px 14px;
+      background: #fafafa;
+      display: none; /* JS 會控制顯示哪一張 */
+    }
+
+    .q-card-title {
+      font-weight: 600;
+      font-size: 0.95rem;
+      color: #0d47a1;
+      margin-bottom: 6px;
+    }
+
+    .q-card-body {
+      font-size: 0.9rem;
+    }
+
+    .q-controls {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-top: 8px;
+      gap: 8px;
+    }
+
+    .q-buttons {
+      display: flex;
+      gap: 8px;
+    }
+
+    .btn {
+      border: none;
+      border-radius: 999px;
+      padding: 6px 12px;
+      font-size: 0.85rem;
+      cursor: pointer;
+      background-color: #e3f2fd;
+      color: #1565c0;
+      transition: background-color 0.15s, transform 0.1s;
+    }
+
+    .btn:hover {
+      background-color: #bbdefb;
+      transform: translateY(-1px);
+    }
+
+    .q-index {
+      font-size: 0.85rem;
+      color: #777;
+    }
+
+    /* PBMC 區塊：左邊格子、右邊詳細說明 */
+    .pbmc-layout {
+      display: grid;
+      grid-template-columns: minmax(0, 1.2fr) minmax(0, 1.1fr);
+      gap: 16px;
+      margin-top: 10px;
+    }
+
+    .pbmc-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+      gap: 10px;
+    }
+
+    .pbmc-item {
+      border-radius: 12px;
+      border: 1px solid #e0e0e0;
+      padding: 10px 12px;
+      background-color: #fafafa;
+      font-size: 0.9rem;
+      cursor: pointer;
+      transition: background-color 0.15s, border-color 0.15s, transform 0.1s;
+    }
+
+    .pbmc-item:hover {
+      background-color: #e3f2fd;
+      border-color: #1565c0;
+      transform: translateY(-1px);
+    }
+
+    .pbmc-item.active {
+      background-color: #bbdefb;
+      border-color: #0d47a1;
+    }
+
+    .pbmc-item-title {
+      font-weight: 600;
+      color: #1565c0;
+      margin-bottom: 2px;
+    }
+
+    .pbmc-item-short {
+      font-size: 0.8rem;
+      color: #555;
+    }
+
+    .pbmc-detail {
+      border-radius: 14px;
+      border: 1px solid #e0e0e0;
+      padding: 12px 14px;
+      background-color: #fcfcfc;
+      font-size: 0.9rem;
+    }
+
+    .pbmc-detail h3 {
+      font-size: 1rem;
+      margin-bottom: 4px;
+      color: #0d47a1;
+    }
+
+    .pbmc-detail p {
+      margin-top: 4px;
+    }
+
+    /* Contact */
+    .contact-list {
+      list-style: none;
+      margin-left: 0;
+    }
+
+    .contact-list li {
+      margin-bottom: 4px;
+      font-size: 0.9rem;
+    }
+
+    footer {
+      text-align: center;
+      font-size: 0.8rem;
+      color: #666;
+      padding: 20px 10px 30px;
+    }
+
+    @media (max-width: 720px) {
+      header { padding: 40px 16px 60px; }
+      header h1 { font-size: 2.2rem; }
+      header h2 { font-size: 1rem; }
+      .two-col { grid-template-columns: 1fr; }
+      .pbmc-layout { grid-template-columns: 1fr; }
+      main { margin-top: -20px; }
+    }
+  </style>
+</head>
+<body>
+  <!-- HERO：以 PPT 為主題，但文案可以稍微不一樣 -->
+  <header id="top">
+    <!-- ★ 把這裡改成你的名字（現在先寫 Sky Lin） -->
+    <h1>SKY LIN</h1>
+    <!-- ★ 一句你的定位，可改成你自己的 -->
+    <h2>Power Electronics & EV Power Systems</h2>
+    <!-- ★ 簡短 summary，可以參考 PPT 但寫得更像網站介紹 -->
+    <p>
+      電力電子與電動車電源系統工程師，專注於高功率、高效率與高可靠度的設計。
+      我相信好的電源設計可以同時推動產業發展，也讓世界更乾淨、更永續。
+    </p>
+  </header>
+
+  <!-- 導覽列 -->
+  <nav>
+    <ul>
+      <li><a href="#highlight">專業亮點 Highlight</a></li>
+      <li><a href="#ev">EV 經驗</a></li>
+      <li><a href="#q">Three Questions</a></li>
+      <li><a href="#pbmc">PBMC 商業模式</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </nav>
+
+  <main>
+    <!-- 專業亮點：參考 PPT，但做成兩欄排版 -->
+    <section id="highlight" class="card">
+      <h2>Professional Highlight</h2>
+      <p class="section-subtitle">以 PPT 為基礎，統整成網站版的專業簡介。</p>
+
+      <div class="two-col">
+        <div>
+          <h3>Education / Background</h3>
+          <ul>
+            <!-- ★ 這裡依照你 PPT 的學歷改寫 -->
+            <li>Ph.D in Power Electronics</li>
+            <li>25+ years experience in EV, server and telecom power systems</li>
+          </ul>
+
+          <h3>One-line Summary</h3>
+          <div class="quote">
+            <!-- ★ 這句用自己的話寫，不要跟 PPT 完全一樣 -->
+            From AC/DC desktop adapters to high-power EV systems, I design
+            reliable and efficient power solutions that move products — and
+            people — forward.
+          </div>
+
+          <div class="tag-row">
+            <span class="tag">Power Electronics</span>
+            <span class="tag">Electric Vehicle</span>
+            <span class="tag">SiC MOSFET</span>
+            <span class="tag">High Power Design</span>
+          </div>
+        </div>
+
+        <div>
+          <h3>Selected Experiences</h3>
+          <ul>
+            <!-- ★ 下面每一條可以從 PPT Slide 2 拿重點，稍微重寫 -->
+            <li>EV power design including OBCM, auxiliary power and EVCC integration.</li>
+            <li>Switching power supply design from 65 W up to multi-kW applications.</li>
+            <li>Server & telecom power systems with three-phase, high-density solutions.</li>
+            <li>Battery backup units for data centers and telecom infrastructure.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- EV 經驗：把 PPT 那張變成網站解說 -->
+    <section id="ev" class="card">
+      <h2>EV Power System Experience</h2>
+      <p class="section-subtitle">從電池、充電器到 traction inverter 的完整系統視角。</p>
+
+      <div class="two-col">
+        <div>
+          <h3>Why EV Matters</h3>
+          <ul>
+            <!-- ★ 可以參考 PPT 的「Benefits of EV」重寫 -->
+            <li>Higher energy efficiency compared to traditional ICE vehicles.</li>
+            <li>Lower local emissions and quieter, smoother driving.</li>
+            <li>Better integration with renewable energy and smart grid.</li>
+          </ul>
+
+          <h3>Design Focus</h3>
+          <ul>
+            <li>High efficiency and power density.</li>
+            <li>Thermal management and reliability under harsh conditions.</li>
+            <li>System-level safety and diagnostic functions.</li>
+          </ul>
+        </div>
+
+        <div>
+          <h3>Key Components I Work With</h3>
+          <ul>
+            <!-- ★ 這四個就是你 PPT 上那幾個 block，文字可以改寫 -->
+            <li><strong>HVDC Battery</strong> – energy source for traction and auxiliary loads.</li>
+            <li><strong>On-Board Charger (OBCM)</strong> – AC to DC conversion and battery charging control.</li>
+            <li><strong>Traction Inverter</strong> – DC to AC conversion for the motor, including regenerative braking.</li>
+            <li><strong>Electric Motor</strong> – delivers torque to the wheels and energy feedback during braking.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- Three Questions：做成可以切換的卡片，增加互動感 -->
+    <section id="q" class="card">
+      <h2>The Three Questions</h2>
+      <p class="section-subtitle">用三個問題，整理我在工作與人生中的核心動力。</p>
+
+      <div class="q-wrapper">
+        <!-- Q1 卡片 -->
+        <div class="q-card" data-index="0">
+          <div class="q-card-title">
+            1. 什麼時候你感到最有成就感？<br />
+            <span style="font-size:0.8rem;color:#777;">When do you feel most energized and fulfilled?</span>
+          </div>
+          <div class="q-card-body">
+            <!-- ★ 這裡把 PPT 裡的 Q1 Answer 改寫放進來 -->
+            When I work with my team to solve a tough power design problem and
+            finally see the hardware pass every test, I feel truly fulfilled.
+            Long nights in the lab, endless debugging, and then that moment
+            when everything works — that process is what keeps me motivated.
+          </div>
+        </div>
+
+        <!-- Q2 卡片 -->
+        <div class="q-card" data-index="1">
+          <div class="q-card-title">
+            2. 你最欣賞的榜樣是誰？為什麼？<br />
+            <span style="font-size:0.8rem;color:#777;">Who is your role model and why?</span>
+          </div>
+          <div class="q-card-body">
+            <!-- ★ 這裡放 PPT Q2 的角色（例如 T.C. Cheng），但文字可以換句話說 -->
+            I look up to T. C. Cheng from Delta Electronics. He shows how deep
+            technical expertise and a long-term vision for sustainability can
+            coexist. His leadership proves that power electronics can drive
+            both business growth and positive environmental impact.
+          </div>
+        </div>
+
+        <!-- Q3 卡片 -->
+        <div class="q-card" data-index="2">
+          <div class="q-card-title">
+            3. 你希望別人怎麼記得你？<br />
+            <span style="font-size:0.8rem;color:#777;">How would you like to be remembered?</span>
+          </div>
+          <div class="q-card-body">
+            <!-- ★ 這裡放 PPT Q3 Answer 的精神，改寫成網站版 -->
+            I hope people remember me as someone who is reliable, curious and
+            kind — an engineer who cares not only about numbers, but also about
+            people and the planet. Someone who quietly pushes projects forward
+            and helps others grow along the way.
+          </div>
+        </div>
+
+        <!-- 控制按鈕 -->
+        <div class="q-controls">
+          <div class="q-buttons">
+            <button class="btn" id="q-prev">〈 上一題</button>
+            <button class="btn" id="q-next">下一題 〉</button>
+          </div>
+          <div class="q-index" id="q-index-text"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- PBMC：用點選格子 → 右邊顯示說明，增加互動 -->
+    <section id="pbmc" class="card">
+      <h2>Personal Business Model Canvas (PBMC)</h2>
+      <p class="section-subtitle">
+        把自己當成一個小型事業：點選左邊任一格子，右邊會顯示更完整的說明。
+      </p>
+
+      <div class="pbmc-layout">
+        <div class="pbmc-grid">
+          <!-- ★ 每個格子請依照你 PPT PBMC 的內容改寫 data-detail -->
+          <div
+            class="pbmc-item active"
+            data-title="Key Partners｜關鍵夥伴"
+            data-detail="Supervisors, R&D teams, industry partners and academic collaborators who support my growth in power electronics and EV development."
+          >
+            <div class="pbmc-item-title">Key Partners</div>
+            <div class="pbmc-item-short">指導教授、研發團隊、產學合作夥伴</div>
+          </div>
+
+          <div
+            class="pbmc-item"
+            data-title="Key Activities｜關鍵活動"
+            data-detail="Designing and prototyping power converters, defining EV power architectures, testing, debugging and mentoring younger engineers."
+          >
+            <div class="pbmc-item-title">Key Activities</div>
+            <div class="pbmc-item-short">設計、驗證、除錯、帶領團隊</div>
+          </div>
+
+          <div
+            class="pbmc-item"
+            data-title="Key Resources｜關鍵資源"
+            data-detail="Technical expertise in power electronics, years of project experience, leadership skills and access to lab facilities and tools."
+          >
+            <div class="pbmc-item-title">Key Resources</div>
+            <div class="pbmc-item-short">專業知識、實務經驗、實驗室資源</div>
+          </div>
+
+          <div
+            class="pbmc-item"
+            data-title="Value Proposition｜價值主張"
+            data-detail="Provide reliable, efficient and scalable power solutions for EV, server and telecom applications, aligned with safety and sustainability."
+          >
+            <div class="pbmc-item-title">Value Proposition</div>
+            <div class="pbmc-item-short">穩定、高效又可靠的電源方案</div>
+          </div>
+
+          <div
+            class="pbmc-item"
+            data-title="Customer Segments｜服務對象"
+            data-detail="EV manufacturers, server and telecom companies, R&D organizations and teams needing high-power, high-reliability power systems."
+          >
+            <div class="pbmc-item-title">Customer Segments</div>
+            <div class="pbmc-item-short">EV / Server / Telecom 客戶</div>
+          </div>
+
+          <div
+            class="pbmc-item"
+            data-title="Channels｜通路"
+            data-detail="Technical projects, joint developments, conferences, publications and internal/external trainings."
+          >
+            <div class="pbmc-item-title">Channels</div>
+            <div class="pbmc-item-short">專案合作、會議、技術分享</div>
+          </div>
+
+          <div
+            class="pbmc-item"
+            data-title="Customer Relationships｜關係"
+            data-detail="Building long-term partnerships based on trust, consistent technical quality and clear communication."
+          >
+            <div class="pbmc-item-title">Customer Relationships</div>
+            <div class="pbmc-item-short">長期合作關係與信任</div>
+          </div>
+
+          <div
+            class="pbmc-item"
+            data-title="Cost Structure｜成本結構"
+            data-detail="Time and effort invested in R&D, tools and lab equipment, continuous learning and team development."
+          >
+            <div class="pbmc-item-title">Cost Structure</div>
+            <div class="pbmc-item-short">時間、學習與設備投入</div>
+          </div>
+
+          <div
+            class="pbmc-item"
+            data-title="Revenue / Returns｜收益"
+            data-detail="Successful projects, product performance improvements, leadership opportunities and contribution to greener technologies."
+          >
+            <div class="pbmc-item-title">Revenue / Returns</div>
+            <div class="pbmc-item-short">專案成果與長期職涯回報</div>
+          </div>
+        </div>
+
+        <div class="pbmc-detail">
+          <h3 id="pbmc-detail-title">Key Partners｜關鍵夥伴</h3>
+          <p id="pbmc-detail-text">
+            Supervisors, R&D teams, industry partners and academic collaborators
+            who support my growth in power electronics and EV development.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact：作業需要的話可以放 Email 等 -->
+    <section id="contact" class="card">
+      <h2>Contact</h2>
+      <ul class="contact-list">
+        <!-- ★ 把下面改成你自己的聯絡方式或只留 Email -->
+        <li>📧 Email：your_email@example.com</li>
+        <li>🔗 LinkedIn：link-to-your-linkedin</li>
+        <li>💻 GitHub：https://github.com/your-github</li>
+      </ul>
+    </section>
+  </main>
+
+  <footer>
+    © <span id="year"></span> Sky Lin · Personal Branding Site
+  </footer>
+
+  <script>
+    // 年份顯示
+    document.getElementById("year").textContent = new Date().getFullYear();
+
+    // 三個問題：簡單的卡片切換
+    const qCards = document.querySelectorAll(".q-card");
+    const qIndexText = document.getElementById("q-index-text");
+    let currentQ = 0;
+
+    function showQuestion(index) {
+      qCards.forEach((card, i) => {
+        card.style.display = i === index ? "block" : "none";
+      });
+      qIndexText.textContent = (index + 1) + " / " + qCards.length;
+    }
+
+    document.getElementById("q-prev").addEventListener("click", () => {
+      currentQ = (currentQ - 1 + qCards.length) % qCards.length;
+      showQuestion(currentQ);
+    });
+
+    document.getElementById("q-next").addEventListener("click", () => {
+      currentQ = (currentQ + 1) % qCards.length;
+      showQuestion(currentQ);
+    });
+
+    // 初始化顯示第一題
+    showQuestion(currentQ);
+
+    // PBMC：點格子 → 更新右側說明
+    const pbmcItems = document.querySelectorAll(".pbmc-item");
+    const pbmcTitle = document.getElementById("pbmc-detail-title");
+    const pbmcText = document.getElementById("pbmc-detail-text");
+
+    pbmcItems.forEach((item) => {
+      item.addEventListener("click", () => {
+        pbmcItems.forEach(i => i.classList.remove("active"));
+        item.classList.add("active");
+        pbmcTitle.textContent = item.dataset.title;
+        pbmcText.textContent = item.dataset.detail;
+      });
+    });
+  </script>
+</body>
+</html>
